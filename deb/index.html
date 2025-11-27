@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debian Setup</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="deb-style.css">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+</head>
+<body id="top">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index3.html" class="logo">
+                <img src="../logo.png" alt="Niaz Uzzaman Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#portfolio">Projects</a></li>
+                    <li><a class="btn" href="index.html#contact">Contact Me</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section class="section deb-hero">
+            <div class="container narrow-container">
+                <div class="deb-header fade-in">
+                    <span class="tag">Linux Configuration</span>
+                    <h1 class="headline">Debian PC <br><span>Step-by-Step Setup</span></h1>
+                </div>
+
+                <div class="tabs-container fade-in delay-100">
+                    <button class="tab-btn active" data-tab="manual">
+                        <i class="fas fa-terminal"></i> Manual Setup
+                    </button>
+                    <button class="tab-btn" data-tab="automated">
+                        <i class="fas fa-robot"></i> Automated Setup
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section pt-0">
+            <div class="container narrow-container">
+                
+                <div id="manual" class="tab-content active">
+                    
+                    <div class="setup-step fade-in delay-100">
+                        <div class="step-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>1. Initial System Update</h2>
+                            <p>The first thing to do after installing Debian with KDE Plasma is to run a system update to ensure all packages are current.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt update && sudo apt upgrade</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step fade-in delay-200">
+                        <div class="step-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>2. Enable Non-Free Repositories</h2>
+                            <p>Access more drivers and software by editing your sources list.</p>
+                            
+                            <p class="step-instruction">Open the source list:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo nano /etc/apt/sources.list</code></pre>
+                            </div>
+
+                            <p class="step-instruction">Add these entries:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>sources.list</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>deb http://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware</code></pre>
+                            </div>
+
+                            <p class="step-instruction">
+                                Press <span class="kbd">CTRL + O</span> then <span class="kbd">Enter</span> to save, then <span class="kbd">CTRL + X</span> to exit. Then update again:
+                            </p>
+                            
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt update</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step fade-in delay-300">
+                        <div class="step-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>3. Install Essential Firmware</h2>
+                            <p>Install necessary microcode and graphics drivers for AMD systems.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt install firmware-amd-graphics firmware-linux firmware-misc-nonfree amd64-microcode</code></pre>
+                            </div>
+                            <p class="step-instruction">Reboot your system to apply changes:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo reboot</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step fade-in delay-100">
+                        <div class="step-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>4. Security & Backup</h2>
+                            <p>Set up a firewall and create a system snapshot using Timeshift.</p>
+                            
+                            <p class="step-instruction">Install and enable UFW Firewall:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt install ufw && sudo ufw enable</code></pre>
+                            </div>
+
+                            <p class="step-instruction">Install Timeshift for backups:</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt install timeshift</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-step fade-in delay-200">
+                        <div class="step-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>5. Essential Tools & Utilities</h2>
+                            <p>Install build tools, command-line utilities, and media codecs.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code>sudo apt install build-essential curl wget htop neofetch git unzip zip</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <div id="automated" class="tab-content">
+                    <div class="setup-step fade-in">
+                        <div class="step-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="step-content">
+                            <h2>Automated Script</h2>
+                            <p>Coming soon. This section will contain a single bash script to automate the entire process above.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span>bash</span> 
+                                    <button class="copy-btn" data-tooltip="Copy"><i class="far fa-copy"></i></button>
+                                </div>
+                                <pre><code># Placeholder for future script
+echo "Automated setup script coming soon..."</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Md Niaz Uzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="floating-sidebar">
+        <a href="https://www.linkedin.com/in/mdniaz-uzzaman/" target="_blank" class="social-icon" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.facebook.com/mdniazuzzaman" target="_blank" class="social-icon" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/mdniazuzzaman" target="_blank" class="social-icon" data-tooltip="X (Formerly Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://wa.me/8801321966034" target="_blank" class="social-icon" data-tooltip="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#top" class="back-to-top" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <script src="../main.js"></script>
+    <script src="deb-script.js"></script>
+</body>
+</html>
