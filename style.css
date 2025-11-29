@@ -502,18 +502,22 @@ header {
     transform: translateY(0);
 }
 
-/* --- Footer --- */
+/* --- Footer (Minimalist) --- */
 footer {
-    border-top: 1px solid var(--border-color);
-    padding: 2rem 0;
+    /* Remove borders and background colors */
+    border-top: none;
+    background: transparent;
+    
+    /* Simple spacing */
+    padding: 1rem 0;
+    margin-top: 2rem;
     text-align: center;
-    background: var(--panel-color);
-    margin-top: 3rem;
 }
 
 footer p {
     color: var(--muted-color);
-    font-size: .9rem;
+    font-size: 0.9rem;
+    opacity: 0.9; /* Makes it slightly more subtle */
 }
 
 /* --- Responsive Styles --- */
@@ -628,4 +632,29 @@ footer p {
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%) translateX(0);
+}
+
+/* --- CUSTOM SCROLLBAR (Global) --- */
+
+/* 1. The width of the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;  /* Vertical scrollbar width */
+    height: 10px; /* Horizontal scrollbar height */
+}
+
+/* 2. The background "track" the scrollbar moves in */
+::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Matches your dark background */
+}
+
+/* 3. The moving "thumb" part */
+::-webkit-scrollbar-thumb {
+    background: var(--border-color); /* Dark grey-blue by default */
+    border-radius: 5px; /* Round edges */
+    border: 2px solid var(--bg-color); /* Creates padding effect */
+}
+
+/* 4. The thumb when you hover over it */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color); /* Turns Teal! */
 }

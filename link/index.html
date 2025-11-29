@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../style.css"> 
+    <link rel="stylesheet" href="link-style.css">
+    
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+</head>
+<body id="top">
+
+    <canvas id="bg-canvas"></canvas>
+
+    <main>
+        <section class="section">
+            <div class="container wa-container">
+                <div class="section-header fade-in">
+                    <h1 class="headline">WhatsApp Link <br><span>Generator</span></h1>
+                </div>
+
+                <div class="wa-card fade-in delay-100">
+                    
+                    <div class="form-group relative">
+                        <label>Select Country</label>
+                        <div class="custom-select" id="countryDisplay">
+                            <div class="selected-option">
+                                <span id="flag-icon"><i class="fas fa-globe"></i></span>
+                                <span id="country-name">Loading countries...</span>
+                            </div>
+                            <i class="fas fa-chevron-down chevron"></i>
+                        </div>
+                        
+                        <div class="dropdown-list hidden" id="countryList">
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="phone-input-group">
+                            <span class="country-code" id="dialCode">+00</span>
+                            <input type="tel" id="phoneNumber" placeholder="1234567890">
+                        </div>
+                    </div>
+
+                    <button id="generateBtn" class="btn full-width">
+                        Generate Link <i class="fas fa-magic"></i>
+                    </button>
+
+                    <div id="resultArea" class="result-box hidden">
+                        <div class="link-display">
+                            <span id="generatedLink">https://wa.me/...</span>
+                        </div>
+                        <button id="copyBtn" class="btn outline icon-btn" data-tooltip="Copy">
+                            <i class="far fa-copy"></i>
+                        </button>
+                        <a id="openBtn" href="#" target="_blank" class="btn icon-btn" data-tooltip="Open">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="../index.html" class="home-link">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year">2024</span> Md Niaz Uzzaman. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+    <script src="link-script.js"></script>
+</body>
+</html>

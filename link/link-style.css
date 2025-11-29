@@ -1,0 +1,279 @@
+/* --- Single Screen Layout Fix --- */
+html, body {
+    height: 100%; /* Take up full height */
+    overflow-y: hidden; /* Disable vertical scroll */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1; /* Pushes footer down, header up */
+    display: flex;
+    align-items: center; /* Vertically centers the tool */
+    justify-content: center;
+}
+
+/* Override default large padding so it fits */
+.section {
+    padding: 0 !important;
+    width: 100%;
+}
+
+/* --- WhatsApp Generator Specific Styles --- */
+
+.wa-container {
+    max-width: 600px !important; /* Limits width for a focused tool look */
+}
+
+/* Tool Card */
+.wa-card {
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative; /* For dropdown positioning */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+    color: var(--muted-color);
+    font-size: 0.9rem;
+}
+
+/* Custom Dropdown Trigger */
+.custom-select {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.custom-select:hover {
+    border-color: var(--primary-color);
+}
+
+.selected-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.selected-option img {
+    width: 24px;
+    border-radius: 2px;
+}
+
+.chevron {
+    color: var(--muted-color);
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+/* Dropdown List */
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background: var(--panel-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-top: 5px;
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dropdown-list.hidden {
+    display: none;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background: var(--bg-color);
+}
+
+.dropdown-item img {
+    width: 20px;
+    border-radius: 2px;
+}
+
+.dropdown-item span {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.dropdown-item .code {
+    margin-left: auto; /* Pushes code to the right */
+    color: var(--muted-color);
+    font-size: 0.85rem;
+}
+
+/* Phone Input Group */
+.phone-input-group {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.phone-input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.15);
+}
+
+.country-code {
+    background: rgba(0,0,0,0.2);
+    padding: 0.9rem 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    border-right: 1px solid var(--border-color);
+    min-width: 60px;
+    text-align: center;
+}
+
+.phone-input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0.9rem 1rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.phone-input-group input:focus {
+    outline: none;
+}
+
+/* Buttons */
+.full-width {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Result Box */
+.result-box {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(22, 160, 133, 0.1); /* Teal tint */
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideUp 0.3s ease-out;
+}
+
+.result-box.hidden {
+    display: none;
+}
+
+.link-display {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+}
+
+.icon-btn {
+    padding: 0.6rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    position: relative; /* For tooltips */
+}
+
+/* Reusing tooltip styles from your main css */
+.icon-btn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background: var(--bg-color);
+    color: var(--muted-color);
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar for dropdown */
+.dropdown-list::-webkit-scrollbar { width: 6px; }
+.dropdown-list::-webkit-scrollbar-track { background: var(--panel-color); }
+.dropdown-list::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+.dropdown-list::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+/* --- BACK TO HOME LINK --- */
+.home-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns content to left */
+    gap: 8px;
+    color: var(--muted-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.2s;
+    margin-top: 1.5rem; /* Add some spacing above */
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color); /* Optional separator line */
+    width: 100%; /* Ensure it fills width to sit at bottom */
+}
+.home-link:hover { color: var(--primary-color); }

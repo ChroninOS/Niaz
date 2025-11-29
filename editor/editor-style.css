@@ -1,0 +1,243 @@
+/* --- Global Reset & Layout --- */
+html, body {
+    height: 100%;
+    overflow: hidden; /* App-like feel, no window scrolling */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.app-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- LEFT SIDEBAR (File Manager) --- */
+.sidebar-left {
+    width: 260px;
+    background: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    flex-shrink: 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+.brand img { width: 30px; }
+
+.tabs-label {
+    font-size: 0.75rem;
+    color: var(--muted-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.file-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* File Tabs */
+.file-tab {
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--muted-color);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.file-tab:hover {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+}
+
+.file-tab.active {
+    background: rgba(22, 160, 133, 0.15); /* Teal Tint */
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.delete-doc {
+    opacity: 0;
+    font-size: 0.8rem;
+    padding: 4px;
+}
+.file-tab:hover .delete-doc { opacity: 1; }
+.delete-doc:hover { color: #e74c3c; }
+
+/* Sidebar Footer */
+.sidebar-footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.full-width { width: 100%; justify-content: center; }
+.mb-2 { margin-bottom: 1rem; }
+
+.home-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--muted-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.home-link:hover { color: var(--primary-color); }
+
+
+/* --- CENTER (The Editor) --- */
+.editor-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    overflow-y: auto; /* Scroll ONLY the paper area */
+}
+
+#typly-editor {
+    /* The White Paper Look */
+    background-color: #ffffff;
+    color: #333333; /* Dark text on white */
+    width: 800px; /* Default, changeable via JS */
+    min-height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 60px;
+    font-size: 20px;
+    line-height: 1.6;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); /* Deep shadow */
+    border-radius: 4px;
+}
+
+/* Custom Scrollbar for editor area */
+.editor-wrapper::-webkit-scrollbar { width: 8px; }
+.editor-wrapper::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+
+/* --- RIGHT SIDEBAR (Tools) --- */
+.sidebar-right {
+    width: 280px;
+    background: var(--panel-color);
+    border-left: 1px solid var(--border-color);
+    padding: 1.5rem;
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.tool-widget {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.tool-widget:last-child { border: none; }
+
+.tool-widget h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--muted-color);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+}
+.stat-row small { font-weight: 400; color: var(--muted-color); font-size: 0.9rem; }
+
+/* Inputs */
+.control-group { margin-bottom: 1.2rem; }
+.control-group label {
+    display: flex; justify-content: space-between;
+    font-size: 0.85rem; color: #fff; margin-bottom: 0.5rem;
+}
+.control-group label span { color: var(--primary-color); font-family: monospace; }
+
+.dark-input {
+    width: 100%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Sliders */
+.range-slider {
+    width: 100%;
+    height: 4px;
+    background: var(--bg-color);
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 2px;
+}
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.range-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.icon-action {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--muted-color);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+.icon-action:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
